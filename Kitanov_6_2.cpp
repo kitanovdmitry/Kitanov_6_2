@@ -5,7 +5,7 @@ using namespace std;
 struct our_struct
 {
     int int_field;
-    our_struct *p_struct; //указатель на следующий элемент структуры
+    our_struct *p_struct; 
 };
 
 void get_value_int_field(int index_of_element,
@@ -26,8 +26,8 @@ void get_value_int_field(int index_of_element,
 int main()
 {
     our_struct *start_elem_address, *support_p1, *support_p2;
-    start_elem_address = new our_struct; //создание первого элемента структуры с выделением динамической памяти, в указатель записывается адрес первого элемента структуры
-    support_p1 = start_elem_address; // адрес первого элемента структуры записывается в указатель p1
+    start_elem_address = new our_struct; 
+    support_p1 = start_elem_address;
 
     cout << "Enter the number of elements of the structure:\n";
     int number_of_elements = 0;
@@ -36,20 +36,20 @@ int main()
     for (int i = 1; i < number_of_elements; i++)
     {
         cout << "Enter the value of the " << i << " element of the integer field:\n";
-        cin >> support_p1 -> int_field; //введённое значение поля записывается в поле(доступ осуществляется через указатель)
+        cin >> support_p1 -> int_field; 
 
-        support_p2 = new our_struct;// создание нового элемента структуры для заполнения поля указателей
-        support_p1 -> p_struct = support_p2; // адрес элемента присваивается в качестве значения поля p
-        support_p1 = support_p2; //оба указателя ссылаются на последний элемент
+        support_p2 = new our_struct; 
+        support_p1 -> p_struct = support_p2; 
+        support_p1 = support_p2;
     }
 
     cout << "Enter the value of last element of the integer field:\n";
     cin >> support_p1 -> int_field;
-    support_p1 -> p_struct = start_elem_address; //последний элемент ссылается на начальный
+    support_p1 -> p_struct = start_elem_address; /
     support_p1 = start_elem_address;
     support_p2 = our_struct;
 
-    for(int i = 1; i < number_of_elements; i++) /*перемещение по элементам структуры и ссылка на значение последующих элементов?*/
+    for(int i = 1; i < number_of_elements; i++) /*РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ СЌР»РµРјРµРЅС‚Р°Рј СЃС‚СЂСѓРєС‚СѓСЂС‹ Рё РёС… СЃСЃС‹Р»РєР° РЅР° РїРѕСЃР»РµРґСѓСЋС‰РёРµ ???*/
     {
         support_p2 += (i-1);
 
@@ -66,7 +66,7 @@ int main()
 
     int index_of_element = 0;
 
-    do //вывод значений полей элементов списка
+    do 
     {
         cout << "Enter the value for index of an element of the structure or enter zero for exit from this program:\n";
         cin >> index_of_element;
