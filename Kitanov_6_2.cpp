@@ -23,6 +23,23 @@ void get_value_int_field(int index_of_element,
     cout << "The value of this element is " << var -> int_field <<"\n";
 }
 
+void get_address_int_field(int index_of_element,
+                           our_struct *start_elem_address,
+                           our_struct *address)
+{
+    our_struct *var, *var1;
+    var = start_elem_address;
+
+    for(int i = 1; i < index_of_element; i++)
+    {
+        var1 = var -> p_struct;
+        var = var1;
+    }
+
+    address = var;
+    cout << "The address of this element is " << var -> p_struct <<"\n";
+}
+
 int main()
 {
     our_struct *start_elem_address, *support_p1, *support_p2;
@@ -45,22 +62,24 @@ int main()
 
     cout << "Enter the value of last element of the integer field:\n";
     cin >> support_p1 -> int_field;
-    support_p1 -> p_struct = start_elem_address; /
+    support_p1 -> p_struct = start_elem_address; //последний элемент ссылается на начальный
+
+    our_struct *address;
     support_p1 = start_elem_address;
-    support_p2 = our_struct;
-
-    for(int i = 1; i < number_of_elements; i++) /*Перемещение по элементам структуры и их ссылка на последующие ???*/
+    int index = 0;
+    
+    for(int i = 1; i < number_of_elements; i++) /*перемещение по элементам структуры и ссылка на значение последующих элементов?*/
     {
-        support_p2 += (i-1);
-
         switch (i)
         {
             case 1:
+                index = i+1;
+                get_address_int_field(index, start_elem_address, address);
+                support_p1 -> p_struct = address;
+                index = i+1;
+                get_address_int_field(index, start_elem_address, address);
+                support_p1 -> p_struct = address;
 
-
-                support_p1 -> p_struct = support_p2;
-                support_p2 = our_struct;
-                support_p1 -> p_struct = support_p2;
         }
     }
 
